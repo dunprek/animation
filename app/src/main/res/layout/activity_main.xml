@@ -29,7 +29,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="top"
         android:background="@color/colorTransparent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -101,19 +101,22 @@
                     android:textSize="10sp" />
 
                 <TextView
+                    android:id="@+id/tv_black_and_white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/fab_margin"
-                    android:background="@drawable/ellipctic_button_accent"
+                    android:background="@drawable/button_state"
+                    android:foreground="?attr/selectableItemBackground"
                     android:padding="8dp"
                     android:text="Hitam Putih"
-                    android:textColor="@color/colorWhite"
                     android:textSize="10sp" />
 
                 <TextView
+                    android:id="@+id/tv_colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/elliptic_button_default"
+                    android:background="@drawable/button_state"
+                    android:foreground="?attr/selectableItemBackground"
                     android:padding="8dp"
                     android:text="Berwana"
                     android:textSize="10sp" />
@@ -136,28 +139,34 @@
                     android:textSize="10sp" />
 
                 <TextView
+                    android:id="@+id/tv_graphic_art"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/fab_margin"
-                    android:background="@drawable/elliptic_button_default"
+                    android:background="@drawable/button_state"
+                    android:foreground="?attr/selectableItemBackground"
                     android:padding="8dp"
                     android:text="Graphic Art"
                     android:textSize="10sp" />
 
                 <TextView
+                    android:id="@+id/tv_copy_center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/fab_margin"
-                    android:background="@drawable/elliptic_button_default"
+                    android:background="@drawable/button_state"
+                    android:foreground="?attr/selectableItemBackground"
                     android:padding="8dp"
                     android:text="Copy Center"
                     android:textSize="10sp" />
 
                 <TextView
+                    android:id="@+id/tv_office_printer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/fab_margin"
-                    android:background="@drawable/elliptic_button_default"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:background="@drawable/button_state"
                     android:padding="8dp"
                     android:singleLine="true"
                     android:text="Office Printer"

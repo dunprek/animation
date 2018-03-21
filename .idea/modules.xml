@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
+      <module fileurl="file://E:\android.project\animation\MyApplication.iml" filepath="E:\android.project\animation\MyApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/animation.iml" filepath="$PROJECT_DIR$/animation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
