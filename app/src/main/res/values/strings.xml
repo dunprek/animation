@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="action_settings">Settings</string>
+    <string name="action_chooser">Chooser List Or Gri</string>
     <string name="action_search">Search</string>
     <string name="action_filter">Filter</string>
+    <string name="hint_find_printer_or__merchant">Cari Lokasi printer atau merchant</string>
+
 </resources>

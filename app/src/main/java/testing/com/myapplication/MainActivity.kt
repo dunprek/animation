@@ -13,13 +13,24 @@ import android.text.method.TextKeyListener.clear
 import android.R.id.edit
 import android.content.SharedPreferences
 import android.os.Handler
+import android.widget.ImageButton
+import android.graphics.drawable.StateListDrawable
+import android.view.View.GONE
 
 
 class MainActivity : BaseActivity(), View.OnClickListener {
 
 
     var doubleBackToExitPressedOnce = false
+    val gridPressed: Boolean = false
+    val listPressed: Boolean = false
 
+
+    //declare list  menu item which is changing with grid item
+    private lateinit var list: MenuItem
+
+    //declare grid  menu item which is changing with list item
+    private lateinit var grid: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +47,22 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         val tvCopyCenter = findViewById<TextView>(R.id.tv_copy_center)
         tvCopyCenter.setOnClickListener(this)
 
-        tvBlackWhite.setSelected(false);
-        tvBlackWhite.setPressed(false);
-        tvGraphicArt.setSelected(false);
-        tvGraphicArt.setPressed(false);
-        tvCopyCenter.setSelected(false);
-        tvCopyCenter.setPressed(false);
+        tvBlackWhite.isSelected = false
+        tvBlackWhite.isPressed = false
+        tvGraphicArt.isSelected = false
+        tvGraphicArt.isPressed = false
+        tvCopyCenter.isSelected = false
+        tvCopyCenter.isPressed = false
+
+
+        val ibPrinterClose = findViewById<ImageButton>(R.id.ib_printer_close)
+        val ibPrinterSearch = findViewById<ImageButton>(R.id.ib_printer_search)
+        ibPrinterClose.setOnClickListener(this)
+        ibPrinterSearch.setOnClickListener(this)
+
+
+        //SET DEFAULT STATE FOR LAYOUT SEARCH TO GONE
+        layout_test.visibility = View.GONE
 
         // slide-up animation
     }
@@ -52,34 +73,60 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         return true
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
+
         return when (item.itemId) {
-            R.id.action_settings -> {
-                toast("Settings")
+            R.id.action_grid -> {
+                toast("GRID PRESSED")
+                list.isVisible = true
+                grid.isVisible = false
+
                 return true
             }
+
+            R.id.action_list -> {
+                toast("LIST  PRESSED")
+                list.isVisible = false
+                grid.isVisible = true
+
+                return true
+            }
+
             R.id.action_search -> {
                 toast("Search")
                 toolbar.visibility = View.GONE
                 val slideUp = AnimationUtils.loadAnimation(this, R.anim.frag_slide_out)
 
-                if (layout_test.getVisibility() == View.GONE) {
-                    layout_test.setVisibility(View.VISIBLE);
-                    layout_test.startAnimation(slideUp);
+                if (layout_test.visibility == View.GONE) {
+                    layout_test.visibility = View.VISIBLE
+                    layout_test.startAnimation(slideUp)
                 }
 //                if(isPressed) layout_testing.visibility = View.VISIBLE
                 return true
 
             }
+
             R.id.action_clip -> {
                 toast("Clip")
                 return true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        grid = menu.findItem(R.id.action_grid)
+        list = menu.findItem(R.id.action_list)
+        grid.isVisible = true
+        list.isVisible = false
+        return true
+
     }
 
     private fun toast(message: CharSequence) =
@@ -96,7 +143,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 } else {
                     tv_black_and_white.isSelected = true
                     tv_black_and_white.setTextColor(resources.getColor(R.color.colorWhite))
-                    toast("tv_black_and_white")
                 }
             }
 /////////////////////////////////////////////////////////////
@@ -109,7 +155,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                     tv_colored.isSelected = true
                     tv_colored.setTextColor(resources.getColor(R.color.colorWhite))
 
-                    toast("tv_colored")
                 }
             }
 //////////////////////////////////////////////////////////////
@@ -121,8 +166,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 } else {
                     tv_graphic_art.isSelected = true
                     tv_graphic_art.setTextColor(resources.getColor(R.color.colorWhite))
-
-                    toast("tv_graphic_art")
 
                 }
 
@@ -138,7 +181,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                     tv_copy_center.isSelected = true
                     tv_copy_center.setTextColor(resources.getColor(R.color.colorWhite))
 
-                    toast("copy center")
 
                 }
             }
@@ -151,10 +193,15 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 } else {
                     tv_office_printer.isSelected = true
                     tv_office_printer.setTextColor(resources.getColor(R.color.colorWhite))
-                    toast("office printer")
                 }
             }
-
+////////////////////////////////////////////////////////////
+            R.id.ib_printer_close -> {
+                if (toolbar.visibility == View.GONE) {
+                    toolbar.visibility = View.VISIBLE
+                    layout_test.visibility = View.GONE
+                }
+            }
         }
     }
 

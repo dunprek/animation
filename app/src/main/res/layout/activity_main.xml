@@ -29,7 +29,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="top"
         android:background="@color/colorTransparent"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,6 +49,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
+                    android:id="@+id/ib_printer_search"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginLeft="8dp"
@@ -57,14 +58,16 @@
                     tools:ignore="ContentDescription" />
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:id="@+id/et_printer_search"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="@android:color/transparent"
-                    android:hint="Cari Lokasi printer atau merchant"
+                    android:hint="@string/hint_find_printer_or__merchant"
                     android:singleLine="true" />
 
                 <ImageButton
+                    android:id="@+id/ib_printer_close"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginLeft="8dp"
