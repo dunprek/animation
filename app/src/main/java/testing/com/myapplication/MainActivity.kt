@@ -9,9 +9,16 @@ import android.widget.TextView
 import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.*
+import android.text.method.TextKeyListener.clear
+import android.R.id.edit
+import android.content.SharedPreferences
+import android.os.Handler
 
 
 class MainActivity : BaseActivity(), View.OnClickListener {
+
+
+    var doubleBackToExitPressedOnce = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,16 +87,13 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(view: View) {
         // clear state
-
-
         when (view.id) {
             R.id.tv_black_and_white -> {
-                if(tv_black_and_white.isSelected){
+                if (tv_black_and_white.isSelected) {
                     tv_black_and_white.isSelected = false
                     tv_black_and_white.setTextColor(resources.getColor(R.color.colorTransparent))
 
-                }
-                else{
+                } else {
                     tv_black_and_white.isSelected = true
                     tv_black_and_white.setTextColor(resources.getColor(R.color.colorWhite))
                     toast("tv_black_and_white")
@@ -97,12 +101,11 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
 /////////////////////////////////////////////////////////////
             R.id.tv_colored -> {
-                if(tv_colored.isSelected){
+                if (tv_colored.isSelected) {
                     tv_colored.isSelected = false
                     tv_colored.setTextColor(resources.getColor(R.color.colorTransparent))
 
-                }
-                else{
+                } else {
                     tv_colored.isSelected = true
                     tv_colored.setTextColor(resources.getColor(R.color.colorWhite))
 
@@ -111,12 +114,11 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
 //////////////////////////////////////////////////////////////
             R.id.tv_graphic_art -> {
-                if(tv_graphic_art.isSelected){
+                if (tv_graphic_art.isSelected) {
                     tv_graphic_art.isSelected = false
                     tv_graphic_art.setTextColor(resources.getColor(R.color.colorTransparent))
 
-                }
-                else{
+                } else {
                     tv_graphic_art.isSelected = true
                     tv_graphic_art.setTextColor(resources.getColor(R.color.colorWhite))
 
@@ -128,12 +130,11 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
 /////////////////////////////////////////////////////////////
             R.id.tv_copy_center -> {
-                if(tv_copy_center.isSelected){
+                if (tv_copy_center.isSelected) {
                     tv_copy_center.isSelected = false
                     tv_copy_center.setTextColor(resources.getColor(R.color.colorTransparent))
 
-                }
-                else{
+                } else {
                     tv_copy_center.isSelected = true
                     tv_copy_center.setTextColor(resources.getColor(R.color.colorWhite))
 
@@ -143,12 +144,11 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
 ////////////////////////////////////////////////////////////
             R.id.tv_office_printer -> {
-                if(tv_office_printer.isSelected){
+                if (tv_office_printer.isSelected) {
                     tv_office_printer.isSelected = false
                     tv_office_printer.setTextColor(resources.getColor(R.color.colorTransparent))
 
-                }
-                else{
+                } else {
                     tv_office_printer.isSelected = true
                     tv_office_printer.setTextColor(resources.getColor(R.color.colorWhite))
                     toast("office printer")
@@ -158,6 +158,15 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+        this.doubleBackToExitPressedOnce = true
+        toast(resources.getString(R.string.app_name))
+        Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+    }
 
 }
 
